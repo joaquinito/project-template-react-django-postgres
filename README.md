@@ -1,0 +1,1 @@
+# project-template-react-django-postgres
