@@ -10,25 +10,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 import dj_database_url
 from pathlib import Path
-import mimetypes
+from dotenv import load_dotenv
 
-mimetypes.add_type("text/css", ".css", True)
-mimetypes.add_type("text/javascript", ".js", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load environment variables from .env file
+load_dotenv(os.path.join(os.path.dirname(BASE_DIR), '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-k=yqnya72xa1jb7igp1n4su8%-nka8!n3vwq^x3rlvhtsg(dqm'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -86,7 +87,7 @@ WSGI_APPLICATION = 'server.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://jtvjmbqf:OUjNYJXJ9LXyLf1wpKJIv0MnRCpmtAxX@snuffleupagus.db.elephantsql.com/jtvjmbqf',
+        default=os.getenv('ELEPHANTSQL_URL'),
         conn_max_age=600,
         conn_health_checks=True,
     )
@@ -133,7 +134,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Allowed Cross Origin Resource Sharing (CORS) 
+# Allowed Cross Origin Resource Sharing (CORS)
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
