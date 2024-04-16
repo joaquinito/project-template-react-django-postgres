@@ -3,7 +3,7 @@
 This template contains:
 * a backend (folder 'server') running with Django
 * a frontend (folder 'client') using on the React library, started with Vite
-* a PostgreSQL database hosted in the ElephantSQL cloud service
+* a PostgreSQL database hosted in a cloud service
 
 The file package.json in 'client' contains the Javascript libraries necessary for the frontend and a custom build script that copies the built frontend to the 'frontend' app in Django.
 The file requirements.txt contains the Python libraries necessary for the backend.
@@ -29,4 +29,4 @@ In the server:
 A .env file is required in the root folder, containing the following variables:
 * `DJANGO_SECRET_KEY`: the secret key for Django
 * `DJANGO_DEBUG`: `True` or `False` depending on whether you want to run Django in debug mode
-* `ELEPHANSQL_URL`: the URL for the PostgreSQL database hosted in ElephantSQL
+* `POSTGRESQL_DB_URL`: the URL for the PostgreSQL database
